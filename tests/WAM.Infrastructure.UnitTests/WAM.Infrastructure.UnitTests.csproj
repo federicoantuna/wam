@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\src\WAM.Infrastructure\WAM.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Persistence\" />
+  </ItemGroup>
+
 </Project>
