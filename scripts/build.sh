@@ -1,0 +1,34 @@
+# Generic
+SOLUTION_FILE_NAME="WAM.sln"
+COVERAGE_REPORT_DIR=".coverage-report"
+HTML_REPORT_DIR="html"
+HTML_REPORT_INDEX_FILE_NAME="index.html"
+COVERAGE_XML_FILE_NAME="coverage.cobertura.xml"
+REPORT_GENERATOR_REPORT_SEPARATOR=";"
+TEST_RESULTS_DIR="TestResults"
+TESTS_DIR="tests"
+
+# Coverlet and Report Generator
+COVERLET_OUTPUT="./TestResults/"
+COLLECT_COVERAGE="true"
+COVERLET_OUTPUT_FORMAT="cobertura"
+REPORT_TYPES="HTML;"
+
+# Arrange
+SOLUTION_DIR="$(dirname $(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd))"
+SOLUTION="$SOLUTION_DIR/$SOLUTION_FILE_NAME"
+REPORT_HTML_FILE="$SOLUTION_DIR/$HTML_REPORT_DIR/$HTML_REPORT_INDEX_FILE_NAME"
+TARGET_DIR="$COVERAGE_REPORT_DIR/$HTML_REPORT_DIR"
+
+# Build and Test
+dotnet build $SOLUTION_FILE
+dotnet test $SOLUTION_FILE /p:CollectCoverage=$COLLECT_COVERAGE /p:CoverletOutputFormat=$COVERLET_OUTPUT_FORMAT /p:CoverletOutput=$COVERLET_OUTPUT
+
+# Arrange
+COVERAGE_XML_FILES=$(find $SOLUTION_DIR/$TESTS_DIR/*/$TEST_RESULTS_DIR/*.xml -maxdepth 1 | awk -vORS="$REPORT_GENERATOR_REPORT_SEPARATOR" '{ print $1 }' | sed "s/\$REPORT_GENERATOR_REPORT_SEPARATOR$/\n/")
+
+# Generate Report
+reportgenerator "-reports:$COVERAGE_XML_FILES" "-targetdir:$TARGET_DIR" -reporttypes:$REPORT_TYPES
+
+# Open Report
+open $REPORT_HTML_FILE
