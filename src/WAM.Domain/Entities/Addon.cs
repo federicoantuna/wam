@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using WAM.Domain.Bases;
 using WAM.Domain.Enums;
@@ -18,6 +19,7 @@ namespace WAM.Domain.Entities
         /// <summary>
         /// Private constructor for Entity Framework
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private Addon()
         {
         }

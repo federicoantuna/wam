@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using WAM.Domain.UnitTests.Fakes;
 using Xunit;
 
@@ -8,6 +9,46 @@ namespace WAM.Domain.UnitTests.Bases
     public class ValueObjectTests
     {
         [Fact]
+        public void GetHashCode_WhenPropertiesAreNull_ReturnsZero()
+        {
+            // Arrange
+            var sut = new FakeValueObject
+            {
+                TestNullableInt = null
+            };
+
+            // Act
+            var result = sut.GetHashCode();
+
+            // Assert
+            Assert.Equal(0, result);
+        }
+
+        [Fact]
+        public void GetHashCode_WhenPropertiesAreNotNull_ReturnsXOROfEachPropertyHashCode()
+        {
+            // Arrange
+            var testNumber = new Random().Next();
+            var testString = "Test String";
+
+            var sut = new FakeValueObject
+            {
+                TestNullableInt = testNumber,
+                TestString = testString
+            };
+
+            var testNumberHashCode = testNumber.GetHashCode();
+            var testStringHashCode = testString.GetHashCode();
+            var expectedHashCode = testNumberHashCode ^ testStringHashCode;
+
+            // Act
+            var result = sut.GetHashCode();
+
+            // Assert
+            Assert.Equal(expectedHashCode, result);
+        }
+
+        [Fact]
         public void GetHashCode_ForEquivalentValueObjects_ReturnsSameHashCodes()
         {
             // Arrange
@@ -15,11 +56,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
 
             // Act
@@ -39,11 +80,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiatorA
+                TestNullableInt = differentiatorA
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiatorB
+                TestNullableInt = differentiatorB
             };
 
             // Act
@@ -62,11 +103,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
 
             // Act
@@ -87,11 +128,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiatorA
+                TestNullableInt = differentiatorA
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiatorB
+                TestNullableInt = differentiatorB
             };
 
             // Act
@@ -104,6 +145,34 @@ namespace WAM.Domain.UnitTests.Bases
         }
 
         [Fact]
+        public void Equals_WhenComparingWithNull_ReturnsFalse()
+        {
+            // Arrange
+            var sut = new FakeValueObject();
+
+            // Act
+            var result = sut.Equals(null);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
+        public void Equals_WhenComparingWithDifferentType_ReturnsFalse()
+        {
+            // Arrange
+            var differentType = new Object();
+
+            var sut = new FakeValueObject();
+
+            // Act
+            var result = sut.Equals(differentType);
+
+            // Assert
+            Assert.False(result);
+        }
+
+        [Fact]
         public void EqualOperator_ForEquivalentValueObjects_ReturnsTrue()
         {
             // Arrange
@@ -111,11 +180,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
 
             // Act
@@ -136,11 +205,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiatorA
+                TestNullableInt = differentiatorA
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiatorB
+                TestNullableInt = differentiatorB
             };
 
             // Act
@@ -161,11 +230,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiatorA
+                TestNullableInt = differentiatorA
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiatorB
+                TestNullableInt = differentiatorB
             };
 
             // Act
@@ -185,11 +254,11 @@ namespace WAM.Domain.UnitTests.Bases
 
             var sutA = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
             var sutB = new FakeValueObject
             {
-                Differentiator = differentiator
+                TestNullableInt = differentiator
             };
 
             // Act

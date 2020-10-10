@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using WAM.Domain.Bases;
 
 namespace WAM.Domain.Entities
@@ -12,6 +13,7 @@ namespace WAM.Domain.Entities
         /// <summary>
         /// Private constructor for Entity Framework
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private Package()
         {
         }
@@ -30,11 +32,11 @@ namespace WAM.Domain.Entities
         /// <summary>
         /// Package's name.
         /// </summary>
-        public String Name { get; set; }
+        public String Name { get; private set; }
 
         /// <summary>
         /// Package's external id.
         /// </summary>
-        public Int32 ExternalId { get; set; }
+        public Int32 ExternalId { get; private set; }
     }
 }

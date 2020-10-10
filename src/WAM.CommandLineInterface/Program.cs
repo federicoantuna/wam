@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WAM.CommandLineInterface
 {
@@ -7,6 +8,7 @@ namespace WAM.CommandLineInterface
     {
         private static readonly IServiceProvider _serviceProvider;
         
+        [ExcludeFromCodeCoverage]
         static Program()
         {
             _serviceProvider = Startup.ConfigureServices().BuildServiceProvider();

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
 using WAM.Domain.Entities;
 
 namespace WAM.Infrastructure.Persistence.Configurations
@@ -8,6 +9,7 @@ namespace WAM.Infrastructure.Persistence.Configurations
     /// <summary>
     /// Provides configuration for the persistence of <see cref="Package"/>.
     /// </summary>
+    [ExcludeFromCodeCoverage]
     public class PackageConfiguration : IEntityTypeConfiguration<Package>
     {
         public void Configure(EntityTypeBuilder<Package> builder)

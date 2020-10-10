@@ -8,11 +8,14 @@ namespace WAM.Domain.UnitTests.Fakes
     [ExcludeFromCodeCoverage]
     public class FakeValueObject : ValueObject
     {
-        public Int32 Differentiator { get; set; }
+        public Int32? TestNullableInt { get; set; }
+
+        public String TestString { get; set; }
 
         protected override IEnumerable<Object> GetEqualityComponents()
         {
-            yield return this.Differentiator;
+            yield return this.TestNullableInt;
+            yield return this.TestString;
         }
     }
 }

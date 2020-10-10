@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using WAM.Domain.Bases;
 
 namespace WAM.Domain.ValueObjects
@@ -13,6 +14,7 @@ namespace WAM.Domain.ValueObjects
         /// <summary>
         /// Private constructor for Entity Framework
         /// </summary>
+        [ExcludeFromCodeCoverage]
         private Module()
         {
         }
