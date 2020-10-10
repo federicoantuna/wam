@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using WAM.Domain.Bases;
 
 namespace WAM.Domain.UnitTests.Fakes
 {
+    [ExcludeFromCodeCoverage]
     public class FakeValueObject : ValueObject
     {
         public Int32 Differentiator { get; set; }

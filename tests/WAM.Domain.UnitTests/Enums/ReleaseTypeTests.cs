@@ -1,8 +1,10 @@
-﻿using WAM.Domain.Enums;
+﻿using System.Diagnostics.CodeAnalysis;
+using WAM.Domain.Enums;
 using Xunit;
 
 namespace WAM.Domain.UnitTests.Enums
 {
+    [ExcludeFromCodeCoverage]
     public class ReleaseTypeTests
     {
         [Fact]
@@ -47,12 +49,13 @@ namespace WAM.Domain.UnitTests.Enums
         public void CanBeImplicitCastedToTheCorrespondingEnumValue()
         {
             // Arrange
-            var stableEnum = ReleaseType.ReleaseTypeEnum.Stable;
-            var betaEnum = ReleaseType.ReleaseTypeEnum.Beta;
-            var alphaEnum = ReleaseType.ReleaseTypeEnum.Alpha;
             var stableReleaseType = ReleaseType.Stable;
             var betaReleaseType = ReleaseType.Beta;
             var alphaReleaseType = ReleaseType.Alpha;
+            
+            var stableEnum = ReleaseType.ReleaseTypeEnum.Stable;
+            var betaEnum = ReleaseType.ReleaseTypeEnum.Beta;
+            var alphaEnum = ReleaseType.ReleaseTypeEnum.Alpha;
 
             // Act
             var castedStableEnum = (ReleaseType.ReleaseTypeEnum)stableReleaseType;
@@ -69,12 +72,13 @@ namespace WAM.Domain.UnitTests.Enums
         public void FromEnum_Returns_CorrespondingReleaseType()
         {
             // Arrange
-            var stableReleaseType = ReleaseType.Stable;
-            var betaReleaseType = ReleaseType.Beta;
-            var alphaReleaseType = ReleaseType.Alpha;
             var stableEnum = ReleaseType.ReleaseTypeEnum.Stable;
             var betaEnum = ReleaseType.ReleaseTypeEnum.Beta;
             var alphaEnum = ReleaseType.ReleaseTypeEnum.Alpha;
+            
+            var stableReleaseType = ReleaseType.Stable;
+            var betaReleaseType = ReleaseType.Beta;
+            var alphaReleaseType = ReleaseType.Alpha;
 
             // Act
             var stable = ReleaseType.FromEnum(stableEnum);

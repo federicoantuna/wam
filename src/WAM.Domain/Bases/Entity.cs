@@ -11,7 +11,7 @@ namespace WAM.Domain.Bases
         private readonly ICollection<DomainEvent> _domainEvents;
 
         /// <summary>
-        /// Initializes the Entity with a random Id.
+        /// Initializes the Entity with a random id.
         /// </summary>
         public Entity()
         {

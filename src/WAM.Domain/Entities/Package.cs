@@ -3,7 +3,7 @@ using WAM.Domain.Bases;
 
 namespace WAM.Domain.Entities
 {
-    /// <inheritdoc cref="Entity"/>
+    /// <inheritdoc/>
     /// <summary>
     /// Represents a package that can be associated with one or more <see cref="Addon"/>.
     /// </summary>

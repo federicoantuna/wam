@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using WAM.Domain.Entities;
 using Xunit;
 
 namespace WAM.Domain.UnitTests.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class PackageTests
     {
         [Fact]
@@ -14,12 +16,12 @@ namespace WAM.Domain.UnitTests.Entities
             var externalId = new Random().Next();
 
             // Act
-            var package = new Package(name, externalId);
+            var sut = new Package(name, externalId);
 
             // Assert
-            Assert.NotEqual(Guid.Empty, package.Id);
-            Assert.Equal(name, package.Name);
-            Assert.Equal(externalId, package.ExternalId);
+            Assert.NotEqual(Guid.Empty, sut.Id);
+            Assert.Equal(name, sut.Name);
+            Assert.Equal(externalId, sut.ExternalId);
         }
     }
 }

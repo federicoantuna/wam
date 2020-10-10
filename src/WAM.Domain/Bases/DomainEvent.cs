@@ -1,5 +1,5 @@
 ﻿using System;
-using WAM.Domain.Helpers;
+using WAM.Domain.Services;
 
 namespace WAM.Domain.Bases
 {
@@ -12,9 +12,9 @@ namespace WAM.Domain.Bases
         /// Initializes the <see cref="DomainEvent"/>.
         /// </summary>
         /// <param name="timeService">The Time Service dependency.</param>
-        public DomainEvent()
+        public DomainEvent(ITimeService timeService)
         {
-            this.OcurredAt = TimeProvider.UtcNow;
+            this.OcurredAt = timeService.UtcNow;
         }
 
         /// <summary>

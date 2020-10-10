@@ -1,8 +1,10 @@
-﻿using WAM.Domain.ValueObjects;
+﻿using System.Diagnostics.CodeAnalysis;
+using WAM.Domain.ValueObjects;
 using Xunit;
 
 namespace WAM.Domain.UnitTests.ValueObjects
 {
+    [ExcludeFromCodeCoverage]
     public class ModuleTests
     {
         [Fact]

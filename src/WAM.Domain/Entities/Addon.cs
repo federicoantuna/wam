@@ -7,9 +7,9 @@ using WAM.Domain.ValueObjects;
 
 namespace WAM.Domain.Entities
 {
-    /// <inheritdoc cref="Entity"/>
+    /// <inheritdoc/>
     /// <summary>
-    /// Represents an addon associated with a <see cref="Package"/>.
+    /// Represents an addon associated with a <see cref="Entities.Package"/>.
     /// </summary>
     public class Addon : Entity
     {

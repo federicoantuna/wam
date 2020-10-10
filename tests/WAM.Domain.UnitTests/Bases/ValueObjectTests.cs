@@ -1,8 +1,10 @@
-﻿using WAM.Domain.UnitTests.Fakes;
+﻿using System.Diagnostics.CodeAnalysis;
+using WAM.Domain.UnitTests.Fakes;
 using Xunit;
 
 namespace WAM.Domain.UnitTests.Bases
 {
+    [ExcludeFromCodeCoverage]
     public class ValueObjectTests
     {
         [Fact]
@@ -10,6 +12,7 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiator = 1;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiator
@@ -33,6 +36,7 @@ namespace WAM.Domain.UnitTests.Bases
             // Arrange
             var differentiatorA = 1;
             var differentiatorB = 2;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiatorA
@@ -55,6 +59,7 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiator = 1;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiator
@@ -78,11 +83,12 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiatorA = 1;
+            var differentiatorB = 2;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiatorA
             };
-            var differentiatorB = 2;
             var sutB = new FakeValueObject
             {
                 Differentiator = differentiatorB
@@ -102,6 +108,7 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiator = 1;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiator
@@ -125,11 +132,12 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiatorA = 1;
+            var differentiatorB = 2;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiatorA
             };
-            var differentiatorB = 2;
             var sutB = new FakeValueObject
             {
                 Differentiator = differentiatorB
@@ -149,11 +157,12 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiatorA = 1;
+            var differentiatorB = 2;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiatorA
             };
-            var differentiatorB = 2;
             var sutB = new FakeValueObject
             {
                 Differentiator = differentiatorB
@@ -173,6 +182,7 @@ namespace WAM.Domain.UnitTests.Bases
         {
             // Arrange
             var differentiator = 1;
+
             var sutA = new FakeValueObject
             {
                 Differentiator = differentiator

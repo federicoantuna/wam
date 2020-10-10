@@ -4,7 +4,7 @@ using WAM.Domain.Bases;
 
 namespace WAM.Domain.ValueObjects
 {
-    /// <inheritdoc cref="ValueObject"/>
+    /// <inheritdoc/>
     /// <summary>
     /// Represents a single module from an <see cref="Entities.Addon"/>.
     /// </summary>

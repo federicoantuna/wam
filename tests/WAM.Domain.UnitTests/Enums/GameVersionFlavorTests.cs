@@ -1,8 +1,10 @@
-﻿using WAM.Domain.Enums;
+﻿using System.Diagnostics.CodeAnalysis;
+using WAM.Domain.Enums;
 using Xunit;
 
 namespace WAM.Domain.UnitTests.Enums
 {
+    [ExcludeFromCodeCoverage]
     public class GameVersionFlavorTests
     {
         [Fact]
@@ -41,10 +43,11 @@ namespace WAM.Domain.UnitTests.Enums
         public void CanBeImplicitCastedToTheCorrespondingEnumValue()
         {
             // Arrange
-            var retailEnum = GameVersionFlavor.GameVersionFlavorEnum.Retail;
-            var classicEnum = GameVersionFlavor.GameVersionFlavorEnum.Classic;
             var retailGameVersionFlavor = GameVersionFlavor.Retail;
             var classicGameVersionFlavor = GameVersionFlavor.Classic;
+            
+            var retailEnum = GameVersionFlavor.GameVersionFlavorEnum.Retail;
+            var classicEnum = GameVersionFlavor.GameVersionFlavorEnum.Classic;
 
             // Act
             var castedRetailEnum = (GameVersionFlavor.GameVersionFlavorEnum)retailGameVersionFlavor;
@@ -59,10 +62,11 @@ namespace WAM.Domain.UnitTests.Enums
         public void FromEnum_Returns_CorrespondingGameVersionFlavor()
         {
             // Arrange
-            var retailGameVersionFlavor = GameVersionFlavor.Retail;
-            var classicGameVersionFlavor = GameVersionFlavor.Classic;
             var retailEnum = GameVersionFlavor.GameVersionFlavorEnum.Retail;
             var classicEnum = GameVersionFlavor.GameVersionFlavorEnum.Classic;
+
+            var retailGameVersionFlavor = GameVersionFlavor.Retail;
+            var classicGameVersionFlavor = GameVersionFlavor.Classic;
 
             // Act
             var retail = GameVersionFlavor.FromEnum(retailEnum);
