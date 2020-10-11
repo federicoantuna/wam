@@ -7,7 +7,8 @@ namespace WAM.CommandLineInterface
     public class Program
     {
         private static readonly IServiceProvider _serviceProvider;
-        
+
+        // ExcludeFromCodeCoverage: There is no value in testing this.
         [ExcludeFromCodeCoverage]
         static Program()
         {

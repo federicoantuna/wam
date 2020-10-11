@@ -9,6 +9,7 @@ namespace WAM.Infrastructure.Persistence.Configurations
     /// <summary>
     /// Provides configuration for the persistence of <see cref="Package"/>.
     /// </summary>
+    // ExcludeFromCodeCoverage: There is no value in testing this and it is extremely hard to test.
     [ExcludeFromCodeCoverage]
     public class PackageConfiguration : IEntityTypeConfiguration<Package>
     {

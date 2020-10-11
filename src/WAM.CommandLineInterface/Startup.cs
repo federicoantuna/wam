@@ -8,6 +8,7 @@ using WAM.Infrastructure.Persistence;
 
 namespace WAM.CommandLineInterface
 {
+    // ExcludeFromCodeCoverage: There is no value in testing this and it is extremely hard to test.
     [ExcludeFromCodeCoverage]
     public static class Startup
     {

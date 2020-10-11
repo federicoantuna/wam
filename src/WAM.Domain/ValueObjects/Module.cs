@@ -14,6 +14,7 @@ namespace WAM.Domain.ValueObjects
         /// <summary>
         /// Private constructor for Entity Framework
         /// </summary>
+        // ExcludeFromCodeCoverage: There is no value in testing this.
         [ExcludeFromCodeCoverage]
         private Module()
         {

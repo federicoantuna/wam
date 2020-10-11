@@ -19,6 +19,7 @@ namespace WAM.Domain.Entities
         /// <summary>
         /// Private constructor for Entity Framework
         /// </summary>
+        // ExcludeFromCodeCoverage: There is no value in testing this.
         [ExcludeFromCodeCoverage]
         private Addon()
         {
