@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 # Parameters - Solution
 SOLUTION_FILE_NAME="WAM.sln"
 COVERAGE_COVERLET_DIR=".coverage"
@@ -34,4 +35,4 @@ COVERAGE_FILES=$(find $COVERLET_OUTPUT/**/* -maxdepth 1 | awk -vORS=";" '{ print
 reportgenerator "-reports:$COVERAGE_FILES" "-targetdir:$TARGET_DIR" "-reporttypes:$REPORT_TYPES"
 
 # Open Report
-open $REPORT_HTML_FILE
+xdg-open $REPORT_HTML_FILE > /dev/null 2>&1

@@ -1,18 +1,18 @@
 # Parameters - Solution
 $SolutionFileName = "WAM.sln"
 $CoverageCoverletDir = ".coverage"
-$CoverageReportDir = ".coverage-report"
+$CoverageReportDir = ".coverage-report"	
 
 # Parameters - Coverlet
 $DataCollectorFormat = "cobertura"
-$CoverletOutputFormat = "cobertura"
+$CoverletOutputFormat = ".cobertura"
 $CoverletOutputExtension = ".xml"
 $Collect = "XPlat Code Coverage"
-$CoverageFileName = "coverage.$CoverletOutputFormat$CoverletOutputExtension"
-
+$CoverageFileName = "coverage$CoverletOutputFormat$CoverletOutputExtension"
+	
 # Parameters - Report Generator
 $ReportTypes = "HTML;cobertura;"
-$HtmlReportIndexFileName = "index.html"
+$HtmlReportIndexFileName = "index.html"	
 
 # Calculated Parameters - Solution - CHANGE WITH EXTREME CAUTION
 $SolutionDir = (Get-Item $PSScriptRoot).Parent.FullName
@@ -20,10 +20,10 @@ $Solution = [IO.Path]::Combine($SolutionDir, $SolutionFileName)
 
 # Calculated Parameters - Coverlet - CHANGE WITH EXTREME CAUTION
 $CoverageRunIdentifier = [GUID]::NewGuid().ToString()
-$CoverletOutput = [IO.Path]::Combine($SolutionDir, $CoverageCoverletDir, $CoverageRunIdentifier)
+$CoverletOutput = [IO.Path]::Combine($SolutionDir, $CoverageCoverletDir, $CoverageRunIdentifier)	
 
 # Build and Test
-dotnet.exe test $Solution --collect:"$Collect" --results-directory:"$CoverletOutput" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format="$DataCollectorFormat"
+dotnet.exe test $Solution --collect:"$Collect" --results-directory:"$CoverletOutput" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format="$DataCollectorFormat"	
 
 # Calculated Parameters - Report Generator - CHANGE WITH EXTREME CAUTION
 $TargetDir = [IO.Path]::Combine($CoverageReportDir, $CoverageRunIdentifier)
