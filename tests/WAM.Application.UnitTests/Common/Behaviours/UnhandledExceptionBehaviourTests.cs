@@ -5,7 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using WAM.Application.Common.Behaviours;
-using WAM.Application.Common.Exceptions;
+using WAM.Application.Common.Constants;
 using WAM.Application.UnitTests.Fakes;
 using WAM.Domain.Logs;
 using Xunit;
@@ -53,7 +53,7 @@ namespace WAM.Application.UnitTests.Common.Behaviours
             async Task<String> handler() => await Task.FromException<String>(exception);
             
             var requestName = typeof(FakeRequest).Name;
-            var formattedLogMessage = String.Format(ExceptionMessage.UnhandledExceptionLogTemplate, requestName, request);
+            var formattedLogMessage = String.Format(LogMessage.UnhandledExceptionLogTemplate, requestName, request);
 
             // Act
             // Assert

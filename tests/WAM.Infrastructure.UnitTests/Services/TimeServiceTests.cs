@@ -8,11 +8,11 @@ namespace WAM.Infrastructure.UnitTests.Services
     [ExcludeFromCodeCoverage]
     public class TimeServiceTests
     {
-        private readonly TimeService _timeService;
+        private readonly TimeService _sut;
 
         public TimeServiceTests()
         {
-            this._timeService = new TimeService();
+            this._sut = new TimeService();
         }
 
         [Fact]
@@ -22,7 +22,7 @@ namespace WAM.Infrastructure.UnitTests.Services
             var now = DateTime.UtcNow;
 
             // Act
-            var result = this._timeService.UtcNow;
+            var result = this._sut.UtcNow;
 
             // Assert
             Assert.True(result >= now);

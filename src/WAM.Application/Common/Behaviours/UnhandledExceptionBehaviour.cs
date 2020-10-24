@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using WAM.Application.Common.Exceptions;
+using WAM.Application.Common.Constants;
 using WAM.Domain.Logs;
 
 namespace WAM.Application.Common.Behaviours
@@ -35,9 +35,7 @@ namespace WAM.Application.Common.Behaviours
             }
             catch (Exception ex)
             {
-                var requestName = typeof(TRequest).Name;
-
-                String formatter(TRequest r, Exception e) => String.Format(ExceptionMessage.UnhandledExceptionLogTemplate, requestName, r);
+                static String formatter(TRequest r, Exception e) => String.Format(LogMessage.UnhandledExceptionLogTemplate, typeof(TRequest).Name, r);
                 this._logger.Log(LogLevel.Error, LogEvent.UnhandledExceptionEvent, request, ex, formatter);
 
                 throw;
