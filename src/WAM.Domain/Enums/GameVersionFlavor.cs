@@ -10,7 +10,11 @@ namespace WAM.Domain.Enums
     /// </summary>
     public class GameVersionFlavor
     {
-        private static readonly IReadOnlyDictionary<GameVersionFlavorEnum, GameVersionFlavor> _gameVersionFlavorMap;
+        private const String RetailCode = "wow_retail";
+        private const String ClassicCode = "wow_classic";
+
+        private static readonly IReadOnlyDictionary<GameVersionFlavorEnum, GameVersionFlavor> _gameVersionFlavorEnumMap;
+        private static readonly IReadOnlyDictionary<String, GameVersionFlavor> _gameVersionFlavorCodeMap;
 
         private readonly GameVersionFlavorEnum _gameVersionFlavorEnum;
         private readonly String _name;
@@ -19,22 +23,29 @@ namespace WAM.Domain.Enums
         /// <summary>
         /// Option for the Retail flavor of the game.
         /// </summary>
-        public static readonly GameVersionFlavor Retail = new GameVersionFlavor(GameVersionFlavorEnum.Retail, "wow_retail");
+        public static readonly GameVersionFlavor Retail = new GameVersionFlavor(GameVersionFlavorEnum.Retail, RetailCode);
 
         /// <summary>
         /// Option for the Classic flavor of the game.
         /// </summary>
-        public static readonly GameVersionFlavor Classic = new GameVersionFlavor(GameVersionFlavorEnum.Classic, "wow_classic");
+        public static readonly GameVersionFlavor Classic = new GameVersionFlavor(GameVersionFlavorEnum.Classic, ClassicCode);
 
         static GameVersionFlavor()
         {
-            var gameVersionFlavorMap = new Dictionary<GameVersionFlavorEnum, GameVersionFlavor>
+            var gameVersionFlavorEnumMap = new Dictionary<GameVersionFlavorEnum, GameVersionFlavor>
             {
                 { GameVersionFlavorEnum.Retail, Retail },
                 { GameVersionFlavorEnum.Classic, Classic }
             };
 
-            _gameVersionFlavorMap = new ReadOnlyDictionary<GameVersionFlavorEnum, GameVersionFlavor>(gameVersionFlavorMap);
+            var gameVersionFlavorCodeMap = new Dictionary<String, GameVersionFlavor>
+            {
+                { RetailCode, Retail },
+                { ClassicCode, Classic }
+            };
+
+            _gameVersionFlavorEnumMap = new ReadOnlyDictionary<GameVersionFlavorEnum, GameVersionFlavor>(gameVersionFlavorEnumMap);
+            _gameVersionFlavorCodeMap = new ReadOnlyDictionary<String, GameVersionFlavor>(gameVersionFlavorCodeMap);
         }
 
         private GameVersionFlavor(GameVersionFlavorEnum gameVersionFlavorEnum, String curseforgeCode)
@@ -61,7 +72,14 @@ namespace WAM.Domain.Enums
         /// </summary>
         /// <param name="gameVersionFlavorEnum">The specified enum.</param>
         /// <returns></returns>
-        public static GameVersionFlavor FromEnum(GameVersionFlavorEnum gameVersionFlavorEnum) => _gameVersionFlavorMap[gameVersionFlavorEnum];
+        public static GameVersionFlavor FromEnum(GameVersionFlavorEnum gameVersionFlavorEnum) => _gameVersionFlavorEnumMap[gameVersionFlavorEnum];
+
+        /// <summary>
+        /// Returns the Game Version Flavor associated to the specified code.
+        /// </summary>
+        /// <param name="gameVersionFlavorCode">The specified code.</param>
+        /// <returns></returns>
+        public static GameVersionFlavor FromCode(String gameVersionFlavorCode) => _gameVersionFlavorCodeMap[gameVersionFlavorCode];
 
         /// <summary>
         /// Returns an enum that represents the Game Version Flavor object.

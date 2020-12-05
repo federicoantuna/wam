@@ -5,7 +5,7 @@ namespace WAM.Infrastructure.Persistence.Common
     /// <summary>
     /// Provides the name for different tables on the database.
     /// </summary>
-    public class TableName
+    public static class TableName
     {
         /// <summary>
         /// Table Modules

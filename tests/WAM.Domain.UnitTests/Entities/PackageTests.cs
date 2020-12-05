@@ -16,7 +16,7 @@ namespace WAM.Domain.UnitTests.Entities
             var externalId = new Random().Next();
 
             // Act
-            var sut = new Package(name, externalId);
+            var sut = new Package(externalId, name);
 
             // Assert
             Assert.NotEqual(Guid.Empty, sut.Id);

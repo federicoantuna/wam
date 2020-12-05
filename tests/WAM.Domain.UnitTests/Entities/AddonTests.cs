@@ -19,7 +19,7 @@ namespace WAM.Domain.UnitTests.Entities
             var externalId = 1;
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
 
@@ -44,7 +44,7 @@ namespace WAM.Domain.UnitTests.Entities
             var moduleName = "Test Module Name";
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var module = new Module(moduleName);
@@ -68,7 +68,7 @@ namespace WAM.Domain.UnitTests.Entities
             var moduleName = "Test Module Name";
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var module = new Module(moduleName);
@@ -93,7 +93,7 @@ namespace WAM.Domain.UnitTests.Entities
             var moduleName = "Test Module Name";
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var module = new Module(moduleName);
@@ -116,7 +116,7 @@ namespace WAM.Domain.UnitTests.Entities
             var externalId = 1;
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var moduleName = "Test Module Name";
@@ -138,7 +138,7 @@ namespace WAM.Domain.UnitTests.Entities
             var externalId = 1;
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var newVersion = "3.4.5";
@@ -160,7 +160,7 @@ namespace WAM.Domain.UnitTests.Entities
             var externalId = 1;
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var newReleaseType = ReleaseType.Alpha;

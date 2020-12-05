@@ -26,7 +26,7 @@ $CoverletOutput = [IO.Path]::Combine($SolutionDir, $CoverageCoverletDir, $Covera
 dotnet.exe test $Solution --collect:"$Collect" --results-directory:"$CoverletOutput" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format="$DataCollectorFormat"	
 
 # Calculated Parameters - Report Generator - CHANGE WITH EXTREME CAUTION
-$TargetDir = [IO.Path]::Combine($CoverageReportDir, $CoverageRunIdentifier)
+$TargetDir = [IO.Path]::Combine($SolutionDir, $CoverageReportDir, $CoverageRunIdentifier)
 $ReportHtmlFile = [IO.Path]::Combine($SolutionDir, $CoverageReportDir, $CoverageRunIdentifier, $HtmlReportIndexFileName)
 $TestResultsDirs = Join-Path $CoverletOutput -ChildPath **\*
 $CoverageFiles = (Split-Path $TestResultsDirs -Resolve | ForEach-Object -Process {[IO.Path]::Combine($_, $CoverageFileName)}) -join ";"

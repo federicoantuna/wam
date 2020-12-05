@@ -3,7 +3,7 @@
 namespace WAM.Domain.Services
 {
     /// <summary>
-    /// Helper that allows DateTime abstraction.
+    /// Contract that allows DateTime abstraction.
     /// </summary>
     public interface ITimeService
     {

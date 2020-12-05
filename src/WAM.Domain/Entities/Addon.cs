@@ -88,6 +88,18 @@ namespace WAM.Domain.Entities
         }
 
         /// <summary>
+        /// Adds a specified <see cref="Module"/> to the addon.
+        /// </summary>
+        /// <param name="module">The specified module.</param>
+        public void AddModules(IEnumerable<Module> modules)
+        {
+            foreach (var module in modules)
+            {
+                this.AddModule(module);
+            }
+        }
+
+        /// <summary>
         /// Removes a specified <see cref="Module"/> from the addon.
         /// </summary>
         /// <param name="name">The specified module name.</param>
@@ -100,6 +112,20 @@ namespace WAM.Domain.Entities
                 _ = this._modules.Remove(module);
             }
         }
+
+        public void RemoveModules(IEnumerable<String> names)
+        {
+            foreach (var name in names)
+            {
+                this.RemoveModule(name);
+            }
+        }
+
+        /// <summary>
+        /// Updates the addon's name to the specified one.
+        /// </summary>
+        /// <param name="name">The specified name.</param>
+        public void UpdateName(String name) => this.Name = name;
 
         /// <summary>
         /// Updates the addon's version to the specified one.

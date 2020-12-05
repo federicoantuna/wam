@@ -24,20 +24,20 @@ namespace WAM.Domain.Entities
         /// </summary>
         /// <param name="name">The specified name.</param>
         /// <param name="externalId">The specified external id.</param>
-        public Package(String name, Int32 externalId)
+        public Package(Int32 externalId, String name)
         {
-            this.Name = name;
             this.ExternalId = externalId;
+            this.Name = name;
         }
-
-        /// <summary>
-        /// Package's name.
-        /// </summary>
-        public String Name { get; private set; }
 
         /// <summary>
         /// Package's external id.
         /// </summary>
         public Int32 ExternalId { get; private set; }
+
+        /// <summary>
+        /// Package's name.
+        /// </summary>
+        public String Name { get; private set; }
     }
 }

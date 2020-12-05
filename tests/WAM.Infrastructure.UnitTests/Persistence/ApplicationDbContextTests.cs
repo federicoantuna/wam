@@ -33,8 +33,8 @@ namespace WAM.Infrastructure.UnitTests.Persistence
             var packageBName = "Test Package B";
             var packageAExternalId = 1;
             var packageBExternalId = 2;
-            var packageA = new Package(packageAName, packageAExternalId);
-            var packageB = new Package(packageBName, packageBExternalId);
+            var packageA = new Package(packageAExternalId, packageAName);
+            var packageB = new Package(packageBExternalId, packageBName);
 
             var now = DateTime.UtcNow;
             _ = this._timeServiceMock.SetupGet(tsm => tsm.UtcNow).Returns(now);
@@ -65,7 +65,7 @@ namespace WAM.Infrastructure.UnitTests.Persistence
             var externalId = 1;
             var name = "Test Addon Name";
             var version = "0.1.2";
-            var package = new Package(packageName, externalId);
+            var package = new Package(externalId, packageName);
             var gameVersionFlavor = GameVersionFlavor.Retail;
             var releaseType = ReleaseType.Stable;
             var addon = new Addon(name, version, package, gameVersionFlavor, releaseType);
@@ -105,7 +105,7 @@ namespace WAM.Infrastructure.UnitTests.Persistence
             var packageExternalId = 1;
             var fakeDomainEventA = new FakeDomainEvent(this._timeServiceMock.Object);
             var fakeDomainEventB = new FakeDomainEvent(this._timeServiceMock.Object);
-            var package = new Package(packageName, packageExternalId);
+            var package = new Package(packageExternalId, packageName);
             package.AddDomainEvent(fakeDomainEventA);
             package.AddDomainEvent(fakeDomainEventB);
 
