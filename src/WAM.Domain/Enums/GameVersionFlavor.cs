@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -10,8 +9,8 @@ namespace WAM.Domain.Enums
     /// </summary>
     public class GameVersionFlavor
     {
-        private const String RetailCode = "wow_retail";
-        private const String ClassicCode = "wow_classic";
+        private const String RetailCode = "WOW_RETAIL";
+        private const String ClassicCode = "WOW_CLASSIC";
 
         private static readonly IReadOnlyDictionary<GameVersionFlavorEnum, GameVersionFlavor> _gameVersionFlavorEnumMap;
         private static readonly IReadOnlyDictionary<String, GameVersionFlavor> _gameVersionFlavorCodeMap;
@@ -65,7 +64,7 @@ namespace WAM.Domain.Enums
         /// Returns the Cursforge code that represents the current object.
         /// </summary>
         /// <returns>The Cursforge code that represents the current object.</returns>
-        public String ToCurseforgeCode() => this._curseforgeCode;
+        public String ToCurseforgeCode() => this._curseforgeCode.ToLowerInvariant();
 
         /// <summary>
         /// Returns the Game Version Flavor associated to the specified enum.
@@ -79,7 +78,7 @@ namespace WAM.Domain.Enums
         /// </summary>
         /// <param name="gameVersionFlavorCode">The specified code.</param>
         /// <returns></returns>
-        public static GameVersionFlavor FromCode(String gameVersionFlavorCode) => _gameVersionFlavorCodeMap[gameVersionFlavorCode];
+        public static GameVersionFlavor FromCode(String gameVersionFlavorCode) => _gameVersionFlavorCodeMap[gameVersionFlavorCode.ToUpperInvariant()];
 
         /// <summary>
         /// Returns an enum that represents the Game Version Flavor object.

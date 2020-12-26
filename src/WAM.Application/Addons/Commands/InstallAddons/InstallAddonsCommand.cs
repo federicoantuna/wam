@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,38 +13,39 @@ using WAM.Domain.Enums;
 using WAM.Domain.ValueObjects;
 using Curseforge = WAM.Application.Common.Models.Curseforge;
 
-namespace WAM.Application.Addons.Commands.BulkInstallAddon
+namespace WAM.Application.Addons.Commands.InstallAddons
 {
-    public class BlukInstallAddonCommand : IRequest<Result>
+    public class InstallAddonsCommand : IRequest<Result>
     {
         public IEnumerable<String> PackageNames { get; set; }
 
         public GameVersionFlavor GameVersionFlavor { get; set; }
 
         public ReleaseType ReleaseType { get; set; }
-
-        public String AddonsDirectory { get; set; }
     }
 
-    public class InstallAddonsCommandHandler : IRequestHandler<BlukInstallAddonCommand, Result>
+    public class InstallAddonsCommandHandler : IRequestHandler<InstallAddonsCommand, Result>
     {
         private readonly ICurseforgeService _curseforgeService;
         private readonly INetworkService _networkService;
         private readonly IFileSystemService _fileSystemService;
         private readonly IApplicationDbContext _applicationDbContext;
+        private readonly Configuration _configuration;
 
         public InstallAddonsCommandHandler(ICurseforgeService curseforgeService,
             INetworkService networkService,
             IFileSystemService fileSystemService,
-            IApplicationDbContext applicationDbContext)
+            IApplicationDbContext applicationDbContext,
+            IOptions<Configuration> options)
         {
             this._curseforgeService = curseforgeService;
             this._networkService = networkService;
             this._fileSystemService = fileSystemService;
             this._applicationDbContext = applicationDbContext;
+            this._configuration = options.Value;
         }
 
-        public async Task<Result> Handle(BlukInstallAddonCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(InstallAddonsCommand request, CancellationToken cancellationToken)
         {
             var packages = this._applicationDbContext.Packages.Where(p => request.PackageNames.Contains(p.Name));
 
@@ -87,13 +89,15 @@ namespace WAM.Application.Addons.Commands.BulkInstallAddon
                 }
                 else
                 {
+                    var addonsDirectory = this._configuration.AddonsDirectories[request.GameVersionFlavor.ToCurseforgeCode()];
+
                     installAddons.Add(this.InstallAddonAsync(fileDto,
                         notInstalledCurseforgeAddonDto.Name,
                         fileDto.Version,
                         packages.Single(p => p.ExternalId == notInstalledCurseforgeAddonDto.Id),
                         request.GameVersionFlavor,
                         request.ReleaseType,
-                        request.AddonsDirectory));
+                        addonsDirectory));
                 }
             }
 

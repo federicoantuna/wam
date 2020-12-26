@@ -17,4 +17,8 @@
     <ProjectReference Include="..\WAM.Domain\WAM.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Addons\Commands\UpdateAddon\" />
+  </ItemGroup>
+
 </Project>

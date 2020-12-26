@@ -9,7 +9,7 @@ using WAM.Domain.Entities;
 using WAM.Domain.Enums;
 using WAM.Domain.ValueObjects;
 
-namespace WAM.Application.Addons.Commands.InstallAddon
+namespace WAM.Application.Addons.Commands.InstallAddonDraft
 {
     public class InstallAddonCommand : IRequest<Boolean>
     {

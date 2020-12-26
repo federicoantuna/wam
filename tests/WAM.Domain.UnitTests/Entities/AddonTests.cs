@@ -85,6 +85,73 @@ namespace WAM.Domain.UnitTests.Entities
         }
 
         [Fact]
+        public void AddModules_AddsModulesToTheAddon()
+        {
+            // Arrange
+            var packageName = "Test Package Name";
+            var externalId = 1;
+            var moduleAName = "Test Module A Name";
+            var moduleBName = "Test Module B Name";
+            var name = "Test Addon Name";
+            var version = "0.1.2";
+            var package = new Package(externalId, packageName);
+            var gameVersionFlavor = GameVersionFlavor.Retail;
+            var releaseType = ReleaseType.Stable;
+            var moduleA = new Module(moduleAName);
+            var moduleB = new Module(moduleBName);
+
+            var sut = new Addon(name, version, package, gameVersionFlavor, releaseType);
+
+            var modules = new Module[]
+            {
+                moduleA,
+                moduleB
+            };
+
+            // Act
+            sut.AddModules(modules);
+
+            // Assert
+            Assert.Collection(sut.Modules,
+                item => Assert.Equal(moduleAName, item.Name),
+                item => Assert.Equal(moduleBName, item.Name));
+        }
+
+        [Fact]
+        public void AddModules_DoesNotAddModulesToTheAddonIfAlreadyThere()
+        {
+            // Arrange
+            var packageName = "Test Package Name";
+            var externalId = 1;
+            var moduleAName = "Test Module A Name";
+            var moduleBName = "Test Module B Name";
+            var name = "Test Addon Name";
+            var version = "0.1.2";
+            var package = new Package(externalId, packageName);
+            var gameVersionFlavor = GameVersionFlavor.Retail;
+            var releaseType = ReleaseType.Stable;
+            var moduleA = new Module(moduleAName);
+            var moduleB = new Module(moduleBName);
+
+            var sut = new Addon(name, version, package, gameVersionFlavor, releaseType);
+            sut.AddModule(moduleA);
+
+            var modules = new Module[]
+            {
+                moduleA,
+                moduleB
+            };
+
+            // Act
+            sut.AddModules(modules);
+
+            // Assert
+            Assert.Collection(sut.Modules,
+                item => Assert.Equal(moduleAName, item.Name),
+                item => Assert.Equal(moduleBName, item.Name));
+        }
+
+        [Fact]
         public void RemoveModule_RemovesAModuleFromTheAddon()
         {
             // Arrange
@@ -128,6 +195,90 @@ namespace WAM.Domain.UnitTests.Entities
 
             // Assert
             Assert.Empty(sut.Modules);
+        }
+
+        [Fact]
+        public void RemoveModules_RemovesModulesFromTheAddon()
+        {
+            // Arrange
+            var packageName = "Test Package Name";
+            var externalId = 1;
+            var moduleAName = "Test Module A Name";
+            var moduleBName = "Test Module B Name";
+            var name = "Test Addon Name";
+            var version = "0.1.2";
+            var package = new Package(externalId, packageName);
+            var gameVersionFlavor = GameVersionFlavor.Retail;
+            var releaseType = ReleaseType.Stable;
+            var moduleA = new Module(moduleAName);
+            var moduleB = new Module(moduleBName);
+
+            var sut = new Addon(name, version, package, gameVersionFlavor, releaseType);
+            sut.AddModule(moduleA);
+            sut.AddModule(moduleB);
+
+            var modules = new String[]
+            {
+                moduleAName,
+                moduleBName
+            };
+
+            // Act
+            sut.RemoveModules(modules);
+
+            // Assert
+            Assert.Empty(sut.Modules);
+        }
+
+        [Fact]
+        public void RemoveModules_DoesNothingIfModulesAreNotInTheAddon()
+        {
+            // Arrange
+            var packageName = "Test Package Name";
+            var externalId = 1;
+            var moduleAName = "Test Module A Name";
+            var moduleBName = "Test Module B Name";
+            var name = "Test Addon Name";
+            var version = "0.1.2";
+            var package = new Package(externalId, packageName);
+            var gameVersionFlavor = GameVersionFlavor.Retail;
+            var releaseType = ReleaseType.Stable;
+
+            var sut = new Addon(name, version, package, gameVersionFlavor, releaseType);
+
+            var modules = new String[]
+            {
+                moduleAName,
+                moduleBName
+            };
+
+            // Act
+            sut.RemoveModules(modules);
+
+            // Assert
+            Assert.Empty(sut.Modules);
+        }
+
+        [Fact]
+        public void UpdateName_UpdatesTheAddonNameToTheSpecifiedOne()
+        {
+            // Arrange
+            var packageName = "Test Package Name";
+            var externalId = 1;
+            var name = "Test Addon Name";
+            var version = "0.1.2";
+            var package = new Package(externalId, packageName);
+            var gameVersionFlavor = GameVersionFlavor.Retail;
+            var releaseType = ReleaseType.Stable;
+            var newName = "New Addon Name";
+
+            var sut = new Addon(name, version, package, gameVersionFlavor, releaseType);
+
+            // Act
+            sut.UpdateName(newName);
+
+            // Assert
+            Assert.Equal(newName, sut.Name);
         }
 
         [Fact]

@@ -59,6 +59,25 @@ namespace WAM.Domain.UnitTests.Enums
         }
 
         [Fact]
+        public void FromCode_Returns_CorrespondingGameVersionFlavor()
+        {
+            // Arrange
+            var retailCode = "wow_retail";
+            var classicCode = "wow_classic";
+
+            var retailGameVersionFlavor = GameVersionFlavor.Retail;
+            var classicGameVersionFlavor = GameVersionFlavor.Classic;
+
+            // Act
+            var retail = GameVersionFlavor.FromCode(retailCode);
+            var classic = GameVersionFlavor.FromCode(classicCode);
+
+            // Assert
+            Assert.Equal(retailGameVersionFlavor, retail);
+            Assert.Equal(classicGameVersionFlavor, classic);
+        }
+
+        [Fact]
         public void FromEnum_Returns_CorrespondingGameVersionFlavor()
         {
             // Arrange

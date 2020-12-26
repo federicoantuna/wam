@@ -1,5 +1,13 @@
 ﻿{
   "ConnectionStrings": {
     "Default": "Data Source=./wam.db"
-  }
+  },
+  "AddonsDirectories": [
+    {
+      "wow_reatil": "C:\\Program Files (x86)\\World of Warcraft\\_retail_\\Interface\\AddOns"
+    },
+    {
+      "wow_classic": "C:\\Program Files (x86)\\World of Warcraft\\_classic_\\Interface\\AddOns"
+    }
+  ]
 }
